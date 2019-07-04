@@ -1,12 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jul  4 15:45:21 2019
-
-@author: Francisco
-"""
-
-# -*- coding: utf-8 -*-
-"""
 Spyder Editor
 
 Este é um arquivo de script temporário.
@@ -41,20 +34,25 @@ def check(Ip):
     else:  
         return False 
 
+def tela():
+    d = Dialog() 
+    code, ip = d.inputbox("Informe o Endereço IP de destino", height=10, width=45,title="Enviando Dados Cifrados por ICMP")
+    while True:
+        if check(ip):
+            d.infobox("Parabens")
+            break
+        else:
+            code, ip = d.inputbox("Endereço IP Invalido, favor informar um IP de destino válido", height=10, width=45,title="Enviando Dados Cifrados por ICMP")
+    code, msg = d.inputbox("Informe a mensagem que deseja cifrar", height=10, width=45,title="Enviando Dados Cifrados por ICMP")
+    with io.StringIO() as buf, redirect_stdout(buf):
+        ipi.remote_test(ip,msg)
+        output = buf.getvalue()
+    d.infobox(output,title="Resultado do Ping ",height=14,width=45)
 
 if __name__ == '__main__':
     
-    def tela():
-        d = Dialog() 
-        code, ip = d.inputbox("Informe o Endereço IP de destino", height=10, width=45,title="Enviando Dados Cifrados por ICMP")
-        while True:
-            if check(ip):
-                d.infobox("Parabens")
-                break
-            else:
-                code, ip = d.inputbox("Endereço IP Invalido, favor informar um IP de destino válido", height=10, width=45,title="Enviando Dados Cifrados por ICMP")
-        code, msg = d.inputbox("Informe a mensagem que deseja cifrar", height=10, width=45,title="Enviando Dados Cifrados por ICMP")
-        with io.StringIO() as buf, redirect_stdout(buf):
-            ipi.remote_test(ip,msg)
-            output = buf.getvalue()
-        d.infobox(output,title="Resultado do Ping ",height=14,width=45)
+    tela()
+    
+
+
+        
