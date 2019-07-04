@@ -144,7 +144,13 @@ class Pinger(object):
                 delay  =  delay * 1000
                 print ("Get pong in %0.4fms" % delay)
 
-
+    def remote_test(destine,msg):
+            target_host = destine
+            msg_cifrada = ci.encrypt(msg.upper(),13)+"-"
+            print("Mensagem Original:",msg)
+            print("Mensagem Cifrada:",msg_cifrada[:-1])
+            pinger = Pinger(target_host=target_host,msg = msg_cifrada)
+            pinger.ping()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Python ping')
