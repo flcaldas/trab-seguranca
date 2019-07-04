@@ -155,6 +155,6 @@ if __name__ == '__main__':
     msg = given_args.msg
     msg_cifrada = ci.encrypt(msg.upper(),13)+"-"
     print("Mensagem Original:",msg)
-    print("Mensagem Cifrada:",msg_cifrada)
+    print("Mensagem Cifrada:",msg_cifrada[:-1])
     pinger = Pinger(target_host=target_host,msg = msg_cifrada)
     pinger.ping()
